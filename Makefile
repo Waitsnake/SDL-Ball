@@ -1,3 +1,9 @@
+ifeq ($(OS),Windows_NT) 
+    detected_OS := Windows
+else
+    detected_OS := $(shell sh -c 'uname 2>/dev/null || echo Unknown')
+endif
+
 DATADIR?=themes/
 
 #append -DWITH_WIIUSE to compile with WIIUSE support!
@@ -8,7 +14,11 @@ CFLAGS+=-c -Wall `sdl-config --cflags`
 
 #append -lwiiuse to compile with WIIUSE support
 #remove -lSDL_mixer if compiling with -DNOSOUND
-LIBS+=-lGL -lGLU `sdl-config --libs` -lSDL_image -lSDL_ttf -lSDL_mixer
+ifeq ($(detected_OS),Darwin) # macOS
+  LIBS+=-framework OpenGL `sdl-config --libs` -lSDL_image -lSDL_ttf -lSDL_mixer
+else
+  LIBS+=-lGL -lGLU `sdl-config --libs` -lSDL_image -lSDL_ttf -lSDL_mixer
+endif
 
 SOURCES=main.cpp 
 OBJECTS=$(SOURCES:.cpp=.o)

@@ -229,6 +229,16 @@ In that case, make a directory there, and put
 the themes dir into it. Then compile with
 make -DDATADIR="/usr/share/sdl-ball/themes"
 
+2.4 compiling for macOS
+Install Homebrew and than install the following packages:
+freeglut
+sdl
+sdl_image
+sdl_ttf
+sdl_mixer
+
+Than just run 'make'. 
+
 ------------------------------------
 
 3.0 Themes

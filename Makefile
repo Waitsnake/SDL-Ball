@@ -10,7 +10,12 @@ DATADIR?=themes/
 #append -DNOSOUND to compile WITHOUT sound support
 CC=g++ -DDATADIR="\"$(DATADIR)\""
 
-CFLAGS+=-c -Wall `sdl-config --cflags`
+ifeq ($(detected_OS),Darwin) # macOS
+  CFLAGS+=-c -Wall `sdl-config --cflags` -Wno-deprecated-declarations 
+else
+  CFLAGS+=-c -Wall `sdl-config --cflags`
+endif
+
 
 #append -lwiiuse to compile with WIIUSE support
 #remove -lSDL_mixer if compiling with -DNOSOUND

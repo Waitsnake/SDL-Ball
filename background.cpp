@@ -22,7 +22,7 @@ class backgroundClass {
   GLfloat r[4], g[4], b[4], a;
 
   textureClass tex;
-  bool dir;
+  // bool dir; // comment-out since still not used
   bool firstTexture;
   public:
 

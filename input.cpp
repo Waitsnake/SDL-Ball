@@ -201,6 +201,10 @@ bool controllerClass::get()
       {
         x = -(joystickLeftX * joystickx);
       }
+      else
+      {
+        x = 0.0; 
+      }
       
       if(joysticky < setting.JoyCalLowJitter && itemSelectTime > ITEMSELECTTIME)
       {
